@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background-image: url(img/star.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+h1 {
+    display: flex;
+    font-size: 50px;
+    background-color: #222222ac;
+    width: 890px;
+    justify-content: center;
+    color: white;
+    padding: 20px;
+    margin: 0;
+    position: fixed;
+    top: 10%;
+    border-radius: 10px;
+
+}
+h2 {
+    display: flex;
+    position: relative;
+    color: white;
+    right: 17px;
+    background: linear-gradient(90deg, #53d2c6, #166678, #104955, #0E2E3B);
+    background-position: right;
+    justify-content: center;
+    align-items: center;
+    padding: 0 23px;
+}
+
+h3 {
+    font-size: 23px;
+    
+}
+
+nav {
+    position: relative;
+    width: 800px;
+    height: 60px;
+    background: #222222ac;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav a {
+    position: relative;
+    display: inline-block;
+    font-size: 1em;
+    color: #fff;
+    text-decoration: none;
+    padding: 0 23px;
+    z-index: 1;
+}
+nav span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 135px;
+    height: 100%;
+    background: linear-gradient(45deg, #7DB9B3, #166678, #0E2E3B);
+    border-radius: 8px;
+    transition: .5s ease;
+}
+nav a:nth-child(1):hover~span {
+    left: 0;
+}
+nav a:nth-child(2):hover~span {
+    left: 195px;
+    width: 120px;
+}
+nav a:nth-child(3):hover~span {
+    left: 370px;
+    width: 120px;
+}
+nav a:nth-child(4):hover~span {
+    left: 535px;
+    width: 120px;
+}
+nav a:nth-child(5):hover~span {
+    left: 690px;
+    width: 120px;
+}
+img {
+    position: fixed;
+    width: 450px;
+    height: 550px;
+    left: 72%;
+    top: 40%;
+    bottom: 500px;
+}
+
+.button2 {
+    position: relative;
+    left: 21%;
+    width: 500px;
+    word-spacing: 50%;
+
+}
+button {
+    margin: 10px;
+    padding: 15px 25px;
+    font-size: 19px;
+    color: rgb(255, 255, 255);
+    background-color: #45a04900;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a04900;
+}
+
+#ticketOptions {
+    display: none;
+    margin: 20px;
+}
+
+#ticketOptions button {
+    background-color: #0023bdda;
+}
+
+#ticketOptions button:hover {
+    background-color: #6541e985;
+}
+
+.container {
+    padding: 20px;
+}
+
+.img-movie {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 38%;
+    background-image: url(img/movie1.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #2e1a4786;
+}
+
+.modal-content {
+    background-color: #051C2C;
+    margin: 15% auto;
+    padding: 40px;
+    border: 1px solid #0bffffcf;
+    width: 80%;
+    height: 15% auto;
+    max-width: 600px;
+    border-radius: 10px;
+    text-align: left;
+    color:rgb(255, 255, 255);
+}
+.close {
+    color: #ffffff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+    padding: 10px 20px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #ffffff;
+}
+
+.modal-footer {
+    border-top: 1px solid #ffffff;
+    text-align: right;
+}

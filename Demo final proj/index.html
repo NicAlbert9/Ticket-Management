@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Service</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+        class Ticket {
+            constructor(type) {
+                this.type = type;
+            }
+        }
+
+        class Stack {
+            constructor() {
+                this.items = [];
+            }
+
+            push(ticket) {
+                this.items.push(ticket);
+            }
+
+            pop() {
+                if (this.items.length > 0) {
+                    return this.items.pop();
+                } else {
+                    alert("No action to undo!");
+                    return null;
+                }
+            }
+
+            isEmpty() {
+                return this.items.length === 0;
+            }
+        }
+
+        class Queue {
+            constructor() {
+                this.items = [];
+            }
+
+            enqueue(ticket) {
+                this.items.push(ticket);
+            }
+
+            dequeue() {
+                if (this.items.length > 0) {
+                    return this.items.shift();
+                } else {
+                    alert("Queue is empty!");
+                    return null;
+                }
+            }
+
+            isEmpty() {
+                return this.items.length === 0;
+            }
+        }
+
+        const bookedTickets = new Stack();
+        const availableTickets = new Queue();
+        const cancelledTickets = new Stack();
+
+        function displayMenu() {
+            // This would be replaced by actual menu rendering logic in a real web app
+        }
+
+        function processChoice(choice) {
+            if (choice === 1) {
+                document.getElementById('ticketOptions').style.display = 'block';
+            } else if (choice === 2) {
+                const cancelledTicket = availableTickets.dequeue();
+                if (cancelledTicket) {
+                    cancelledTickets.push(cancelledTicket);
+                    alert(`Cancelled request for ticket: ${cancelledTicket.type}`);
+                }
+            } else if (choice === 3) {
+                const lastCancellation = cancelledTickets.pop();
+                if (lastCancellation) {
+                    availableTickets.enqueue(lastCancellation);
+                    alert(`Undoing last cancellation: ${lastCancellation.type}`);
+                }
+            } else if (choice === 4) {
+                viewRequestedTickets();
+            } else if (choice === 5) {
+                // Exit logic here
+            } else {
+                alert("Invalid choice. Please enter a valid option.");
+            }
+        }
+
+        function chooseTicketType(ticketType) {
+            let ticket;
+            switch (ticketType) {
+                case 'Movie':
+                    ticket = new Ticket("Movie");
+                    break;
+                case 'Transport':
+                    ticket = new Ticket("Transport");
+                    break;
+                case 'Event':
+                    ticket = new Ticket("Event");
+                    break;
+                default:
+                    alert("Invalid ticket type!");
+                    return;
+            }
+            availableTickets.enqueue(ticket);
+            alert(`Your request for a ${ticket.type} ticket has been placed.`);
+            document.getElementById('ticketOptions').style.display = 'none';
+        }
+
+        function viewRequestedTickets() {
+            let requestedTickets = "<h4>Requested Tickets</h4><ul>";
+            bookedTickets.items.forEach((ticket, index) => {
+                requestedTickets += `<li>${index + 1}. ${ticket.type}</li>`;
+            });
+            requestedTickets += "</ul><p>Booked Tickets:</p><ul>";
+            availableTickets.items.forEach((ticket, index) => {
+                requestedTickets += `<li>${index + 1}. ${ticket.type}</li>`;
+            });
+            requestedTickets += "</ul>";
+
+            document.getElementById('ticketList').innerHTML = requestedTickets;
+            document.getElementById('requestedTicketsModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('requestedTicketsModal').style.display = 'none';
+        }
+    </script>
+
+</head>
+
+<body>
+    <img src="img/baymax.png">  
+    <h1>Ticket Management System</h1>
+
+    <div class="container">
+        <nav>
+            <a href="#"><button onclick="processChoice(1)">Request</button></a>
+            <a href="#"><button onclick="processChoice(2)">Cancel</button></a>
+            <a href="#"><button onclick="processChoice(3)">Undo</button></a>
+            <a href="#"><button onclick="processChoice(4)">View</button></a>
+            <a href="#"><button onclick="processChoice(5)">Exit</button></a>
+            <span></span>
+        </nav>
+
+        <div id="ticketOptions" class = "button2">
+            <h2>Choose Ticket Type</h2>
+            <button onclick="chooseTicketType('Movie')">Movie</button>
+            <button onclick="chooseTicketType('Transport')">Transport</button>
+            <button onclick="chooseTicketType('Event')">Event</button>
+        </div>
+    </div>
+
+    <div id="requestedTicketsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3>Requested Tickets</h3>
+            </div>
+            <div class="modal-body" id="ticketList">
+                <!-- Ticket list will be injected here -->
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
